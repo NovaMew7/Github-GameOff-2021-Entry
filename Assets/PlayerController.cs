@@ -22,28 +22,32 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         velocity = new Vector3(0,0,0);
-
+        
         if (Input.GetKey(KeyCode.W)) {
             velocity.y+=speed * Time.deltaTime;
             animator.Play("Walk_U");
+            animator.enabled = true;
         } else 
         if (Input.GetKey(KeyCode.A)) {
             velocity.x-=speed * Time.deltaTime;
             
             animator.Play("Walk_L");
+            animator.enabled = true;
             isLeft = true;
             
         } else
         if (Input.GetKey(KeyCode.S)) {
             velocity.y-=speed * Time.deltaTime;
             animator.Play("Walk_D");
+            animator.enabled = true;
         } else
         if (Input.GetKey(KeyCode.D)) {
             velocity.x+=speed * Time.deltaTime;
             animator.Play("Walk_L");
+            animator.enabled = true;
             isLeft = false;
         } else {
-            animator.StopPlayback();
+            animator.enabled = false;
         }
         if (isLeft){
             transform.localScale = new Vector3(1,1,1);
