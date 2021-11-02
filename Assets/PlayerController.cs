@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -55,5 +56,11 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1,1,1);
         }
         transform.position = transform.position + velocity;
+    }
+    void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Bug") {
+            Debug.Log("Collided With Bug!!");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }
