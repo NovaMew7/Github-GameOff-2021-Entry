@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     Animator animator;
     Vector3 velocity;
-
+    int numChips = 0;
     bool isLeft = true;    
 
     // Start is called before the first frame update
@@ -56,6 +56,12 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(-1,1,1);
         }
         transform.position = transform.position + velocity;
+    }
+    public void getChip() {
+        numChips++;
+    }
+    public int GetNumChips() {
+        return numChips;
     }
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Bug") {
