@@ -36,10 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlayerController.cs" />
-     <Compile Include="Assets\BugController.cs" />
-     <Compile Include="Assets\Goal.cs" />
-     <Compile Include="Assets\Chip.cs" />
+     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\BugController.cs" />
+     <Compile Include="Assets\Scripts\Goal.cs" />
+     <Compile Include="Assets\Scripts\Chip.cs" />
     <Reference Include="UnityEngine">
         <HintPath>/home/flucksplae/Unity Editors/2020.3.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
