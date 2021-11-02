@@ -18,12 +18,13 @@ public class Goal : MonoBehaviour
     {
         
     }
-    
+    // Handle Level Progression.
     void OnTriggerEnter2D(Collider2D collision) {
-        // Temporaily Reload the Scene.
         if (collision.tag == "Player") {
             if (scr.GetNumChips() >= 14) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Temporary
+                if(SceneManager.GetActiveScene().buildIndex < 2) {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+                }
             }
         }
     }
