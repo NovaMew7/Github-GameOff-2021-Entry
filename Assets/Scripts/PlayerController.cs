@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     public int numChips;
     bool isLeft = true;
     public GameObject circuit;
+    AudioSource sfx;
+    public AudioClip death;
+    public AudioClip collect;
+
 
     //public int deaths;
 
@@ -22,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
         physics = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        
+        sfx = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,14 +77,19 @@ public class PlayerController : MonoBehaviour
     public int GetNumChips() {
         return numChips;
     }
-
+    IEnumerator RespawnAfterWait() {
+        yield return new WaitForSeconds(0.30f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Bug") {
             Debug.Log("Collided With Bug!!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            sfx.PlayOneShot(death, 0.7f);
+            StartCoroutine(RespawnAfterWait());  
         } 
         if (collision.tag == "Collectable") {
             getChip();
+            sfx.PlayOneShot(collect, 0.7f);
         }
     }
 }
