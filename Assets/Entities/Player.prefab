@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.5
+  numChips: 0
 --- !u!50 &8835514393741195532
 Rigidbody2D:
   serializedVersion: 4

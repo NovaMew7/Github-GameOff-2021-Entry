@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
+    public GameObject player;
+    PlayerController scr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scr = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,9 @@ public class Goal : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision) {
         // Temporaily Reload the Scene.
         if (collision.tag == "Player") {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (scr.GetNumChips() >= 14) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Temporary
+            }
         }
     }
 }

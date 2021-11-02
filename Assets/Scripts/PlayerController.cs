@@ -9,16 +9,20 @@ public class PlayerController : MonoBehaviour
     public float speed;
     Animator animator;
     Vector3 velocity;
-    public int numChips = 0;
-    bool isLeft = true;    
+    public int numChips;
+    bool isLeft = true;
+    public GameObject circuit;
+
+    //public int deaths;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.numChips = 0;
+        //this.numChips = 0;
 
         physics = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -60,16 +64,23 @@ public class PlayerController : MonoBehaviour
         transform.position = transform.position + velocity;
     }
     public void getChip() {
-        this.numChips++;
-        Debug.Log("Chip count updated: " + numChips);
+        
+        numChips = numChips+1;
+
+        Debug.Log("Chip count updated: " + GetNumChips());
     }
+
     public int GetNumChips() {
-        return this.numChips;
+        return numChips;
     }
+
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Bug") {
-            Debug.Log("Collided With Bug!!"); 
+            Debug.Log("Collided With Bug!!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } 
+        if (collision.tag == "Collectable") {
+            getChip();
         }
     }
 }
