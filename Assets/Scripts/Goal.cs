@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player") {
             if (scr.GetNumChips() >= 14) {
-                if(SceneManager.GetActiveScene().buildIndex < 2) {
+                if(SceneManager.GetActiveScene().buildIndex < 3) {
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
                 }
             }

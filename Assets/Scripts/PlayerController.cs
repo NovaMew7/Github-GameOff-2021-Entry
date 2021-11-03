@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     AudioSource sfx;
     public AudioClip death;
     public AudioClip collect;
-
+    bool hasKey = false;
 
     //public int deaths;
 
@@ -73,13 +73,19 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Chip count updated: " + GetNumChips());
     }
-
+    public bool getKey() {
+        return hasKey;
+    }
     public int GetNumChips() {
         return numChips;
     }
     IEnumerator RespawnAfterWait() {
         yield return new WaitForSeconds(0.30f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    void obtainKey() {
+        hasKey = true;
+        Debug.Log("Got the key! "+getKey().ToString());
     }
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Bug") {
@@ -89,6 +95,11 @@ public class PlayerController : MonoBehaviour
         } 
         if (collision.tag == "Collectable") {
             getChip();
+            sfx.PlayOneShot(collect, 0.7f);
+        }
+        if (collision.tag == "Key") {
+            obtainKey();
+            Destroy(collision.gameObject);
             sfx.PlayOneShot(collect, 0.7f);
         }
     }
