@@ -1,0 +1,5 @@
+uses: game-ci/unity-builder@v2.0-alpha-13
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+with:
+  targetPlatform: WebGL
